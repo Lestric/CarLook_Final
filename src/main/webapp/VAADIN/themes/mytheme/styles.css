@@ -1,3 +1,324 @@
+.company {
+	background: transparent !important;
+	border: 0px !important;
+	color: white !important;
+	text-decoration: none !important;
+	box-shadow: none;
+	font-family: "Helvetica Neue";
+	text-shadow: none;
+}
+
+.v-button-edit_button {
+	background: transparent !important;
+	border: 1px solid #f0b630 !important;
+	border-radius: 10px !important;
+	color: #f0b630 !important;
+	width: 50px;
+	font-family: "Helvetica Neue";
+	text-align: center;
+	text-shadow: 1px 1px 1px black !important;
+}
+
+.v-panel-nocaption {
+	box-sizing: border-box !important;
+	padding: 0 12px !important;
+	line-height: 36px !important;
+	background-color: rgba(242, 250, 255, 0.8) !important;
+	font-weight: 400 !important;
+	border-radius: 3px 3px 0 0 !important;
+	background-image: none !important;
+	box-shadow: none !important;
+	color: #f0b630 !important;
+	font-size: 25px !important;
+	text-shadow: 1px 1px 1px black !important;
+	font-family: "Helvetica Neue" !important;
+}
+
+.v-panel-content {
+	padding: 20px !important;
+}
+
+.v-caption-pageTitle .v-captiontext {
+	color: #3c3c3c;
+	font-size: 40px;
+	text-align: left;
+	font-family: "Helvetica Neue";
+	text-shadow: 1px 1px 1px black !important;
+	text-decoration: underline;
+}
+
+.v-caption-pageSubTitle .v-captiontext {
+	color: #3c3c3c;
+	font-size: 30px;
+	text-align: left;
+	font-family: "Helvetica Neue";
+	text-decoration: underline;
+}
+
+.v-popupview {
+	position: fixed;
+	left: 50%;
+	top: 50%;
+}
+
+.profbild_klein {
+	border-radius: 50px !important;
+	border: 2px solid #f0b630 !important;
+}
+
+.profbild_gross {
+	border-radius: 150px !important;
+	border: 5px solid #f0b630 !important;
+}
+
+.v-label-divider {
+	color: #f0b630 !important;
+}
+
+.name {
+	color: #f0b630 !important;
+	width: 100px;
+	white-space: normal;
+	height: auto;
+	background: transparent !important;
+	border: none !important;
+	text-decoration: underline;
+	text-align: center !important;
+	text-shadow: 1px 1px 1px black !important;
+}
+
+.v-menubar {
+	background: transparent !important;
+	border: 1px solid #f0b630 !important;
+	border-radius: 10px !important;
+	color: #f0b630 !important;
+	font-family: "Helvetica Neue";
+}
+
+.v-menubar-submenu {
+	background: white !important;
+	border: 1px solid #f0b630 !important;
+	border-radius: 10px !important;
+	color: #f0b630 !important;
+	font-family: "Helvetica Neue";
+}
+
+.v-menubar-menuitem {
+	border-radius: 10px !important;
+}
+
+.v-menubar-menuitem-caption {
+	border-radius: 10px !important;
+}
+
+.v-menubar-menuitem-selected {
+	border-radius: 10px !important;
+	color: white;
+	background-color: #f0b630;
+	border: 1px solid #f0b630 !important;
+}
+
+.v-menubar-submenu-indicator {
+	border-radius: 10px !important;
+	color: white;
+	background-color: #f0b630;
+	border: 1px solid #f0b630 !important;
+}
+
+.menu_bar_container {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	width: 100%;
+}
+
+.v-verticallayout-content {
+	position: fixed;
+	background: rgba(255, 255, 255, 0.7);
+	top: 0px;
+	bottom: 0px;
+	left: 300px;
+	right: 0px;
+	color: black;
+	font-size: 20px;
+	font-family: "Helvetica Neue";
+	overflow-y: auto;
+	-ms-overflow-y: auto;
+}
+
+.v-select-reg_type .v-select-select {
+	background: transparent !important;
+	border: 1px solid #f0b630 !important;
+	border-radius: 10px !important;
+	color: #f0b630 !important;
+	width: 200px;
+	font-family: "Helvetica Neue";
+}
+
+.v-caption-central_footer_item .v-captiontext {
+	color: white;
+}
+
+.v-captiontext-content {
+	font-size: 20px;
+	font-family: "Helvetica Neue";
+	color: black;
+}
+
+.v-textfield-start_textfield {
+	border: 1px solid #e39f02 !important;
+	border-radius: 10px !important;
+	width: 200px !important;
+	text-shadow: 0.5px 0.5px 0.5px black !important;
+}
+
+.v-caption-start_textfield {
+	color: #e39f02 !important;
+	text-shadow: 0.5px 0.5px 0.5px black !important;
+	font-family: "Helvetica Neue";
+}
+
+.v-textfield-jobsuche_textfield {
+	border: 1px solid #e39f02 !important;
+	border-radius: 10px !important;
+	width: 200px !important;
+	text-shadow: 0.5px 0.5px 0.5px black !important;
+}
+
+.v-caption-jobsuche_textfield {
+	color: #e39f02 !important;
+	font-family: "Helvetica Neue";
+	text-shadow: 0.5px 0.5px 0.5px black !important;
+}
+
+.v-link-central_footer_item {
+	background: transparent !important;
+	border: 0px !important;
+	color: white !important;
+	text-decoration: none !important;
+	box-shadow: none;
+	font-family: "Helvetica Neue";
+}
+
+.v-button-start_button {
+	background: transparent !important;
+	border: 1px solid #e39f02 !important;
+	border-radius: 10px !important;
+	color: #e39f02 !important;
+	width: 200px;
+	font-family: "Helvetica Neue";
+	text-shadow: 0.5px 0.5px 0.5px black !important;
+}
+
+.v-button-long_button {
+	background: transparent !important;
+	border: 1px solid #e39f02 !important;
+	border-radius: 10px !important;
+	color: #e39f02 !important;
+	font-family: "Helvetica Neue";
+	text-shadow: 0.5px 0.5px 0.5px black !important;
+}
+
+.v-button-back_button {
+	background: transparent !important;
+	border: 1px solid #3c3c3c !important;
+	border-radius: 10px !important;
+	color: #3c3c3c !important;
+	width: 200px;
+	font-family: "Helvetica Neue";
+	text-shadow: 0.5px 0.5px 0.5px black !important;
+}
+
+.v-button-profilbearbeiten_button {
+	background-color: #f2faff !important;
+	border: 1px solid #e39f02 !important;
+	border-radius: 10px !important;
+	color: #e39f02 !important;
+	width: 200px;
+	font-family: "Helvetica Neue";
+	text-shadow: 0.5px 0.5px 0.5px black !important;
+}
+
+.v-upload .v-button {
+	background-color: #f2faff !important;
+	border: 1px solid #e39f02 !important;
+	border-radius: 10px !important;
+	color: #e39f02 !important;
+	width: 200px;
+	text-shadow: 0.5px 0.5px 0.5px black !important;
+	font-family: "Helvetica Neue";
+}
+
+.v-button-small_button {
+	background-color: #f2faff !important;
+	border: 1px solid #e39f02 !important;
+	border-radius: 10px !important;
+	color: #e39f02 !important;
+	width: 120px;
+	text-shadow: 0.5px 0.5px 0.5px black !important;
+	font-family: "Helvetica Neue";
+}
+
+.v-caption-start_header .v-captiontext {
+	color: #f0b630;
+	font-size: 40px;
+	text-align: center;
+	position: center;
+	font-family: "Helvetica Neue";
+	text-shadow: 0.5px 0.5px 0.5px black !important;
+}
+
+.v-caption-small_header .v-captiontext {
+	color: #f0b630;
+	font-size: 20px;
+	text-align: center;
+	position: center;
+	font-family: "Helvetica Neue";
+	text-shadow: 0.5px 0.5px 0.5px black !important;
+}
+
+.start_mainframe {
+	margin: 0px;
+	padding: 0px;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	height: 100%;
+	width: 100%;
+}
+
+.central_footer {
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	background-color: #f0b630;
+	width: 100%;
+	border-top: 1px solid #ffffff;
+	font-family: "Helvetica Neue";
+}
+
+.v-panel-caption-customStylePanel {
+	box-sizing: border-box !important;
+	padding: 0 12px !important;
+	line-height: 36px !important;
+	border-bottom: 3px solid #f0b630 !important;
+	background-color: rgba(242, 250, 255, 0.8) !important;
+	font-weight: 400 !important;
+	border-radius: 3px 3px 0 0 !important;
+	background-image: none !important;
+	box-shadow: none !important;
+	color: #f0b630 !important;
+	font-size: 25px !important;
+	text-shadow: 1px 1px 1px black !important;
+	font-family: "Helvetica Neue" !important;
+}
+
+.v-panel-content-customStylePanel {
+	background-color: rgba(255, 255, 255, 0.7) !important;
+}
+
 /**
  * Checks if a list contains a certain value.
  * 
@@ -1625,6 +1946,135 @@ div.v-layout.v-horizontal.v-widget {
 .v-splitpanel-horizontal > div  > .v-splitpanel-first-container {
 	display: inline-block;
 	vertical-align: top;
+}
+
+.start_sidebar {
+	position: fixed;
+	background: rgba(255, 255, 255, 0.7);
+	height: 100%;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	border-right: 1px solid #f0b630;
+	font-family: "Helvetica Neue";
+	overflow-y: auto;
+	-ms-overflow-y: auto;
+}
+
+.profil-background {
+	background: -webkit-linear-gradient(#f0b630, #ffffff);
+}
+
+.my-background {
+	background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0.1), #f0b630), url(WEB-INF/backcar.jpg);
+	background-size: 100% auto;
+	background-color: #f0b630;
+	background-repeat: no-repeat;
+}
+
+.my-background2 {
+	background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0.1), #f0b630), url(WEB-INF/backcar.jpg);
+	background-size: 100% auto;
+	background-color: #f0b630;
+	background-repeat: no-repeat;
+}
+
+.animated-background {
+	background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0.1), #f0b630), url(WEB-INF/backcar.jpg);
+	background-size: 100% auto;
+	background-color: #f0b630;
+	background-repeat: no-repeat;
+	-webkit-animation-name: ani1;
+	-webkit-animation-duration: 25s;
+	animation-name: ani1;
+	animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes ani1 {
+		0% {
+		background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0.1), #f0b630), url(WEB-INF/backcar.jpg);
+	}
+	}
+
+@keyframes ani1 {
+		0% {
+		background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0.1), #f0b630), url(WEB-INF/backcar.jpg);
+	}
+	}
+
+.text-shadow {
+	text-shadow: 5px 5px 5px black;
+}
+
+.opacity-50 {
+	filter: opacity(0.5);
+}
+
+.opacity-100 {
+	filter: opacity(1);
+}
+
+.logo_format {
+	text-align: center;
+	position: center;
+	height: 150px;
+	widht: 150px;
+	-webkit-animation-name: hovering;
+	-webkit-animation-duration: 3s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: ease-in-out;
+	-moz-animation-name: hovering;
+	-moz-animation-duration: 3s;
+	-moz-animation-iteration-count: infinite;
+	-moz-animation-timing-function: ease-in-out;
+	animation-name: hovering;
+	animation-duration: 3s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+}
+
+.v-Notification-tray {
+	background: yellow;
+}
+
+@-webkit-keyframes hovering {
+		from {
+		-webkit-transform: translate(0, 0px);
+	}
+		50% {
+		-webkit-transform: translate(0, -25px);
+	}
+		to {
+		-webkit-transform: translate(0, 0px);
+	}
+	}
+
+@-moz-keyframes hovering {
+		from {
+		-moz-transform: translate(0, 0px);
+	}
+		50% {
+		-moz-transform: translate(0, -25px);
+	}
+		to {
+		-moz-transform: translate(0, 0px);
+	}
+	}
+
+@keyframes hovering {
+		from {
+		transform: translate(0, 0px);
+	}
+		50% {
+		transform: translate(0, -25px);
+	}
+		to {
+		transform: translate(0, 0px);
+	}
+	}
+
+.calender {
+	background-color: white;
 }
 
 .mytheme.v-app, .mytheme.v-app-loading {
@@ -15417,4 +15867,28 @@ div.v-layout.v-horizontal.v-widget {
 	display: inline-block;
 	width: 19px;
 	overflow: hidden;
+}
+
+.mytheme .v-margin-left {
+	padding-left: 0px;
+}
+
+.mytheme .v-margin-top {
+	padding-top: 0px;
+}
+
+.mytheme .v-margin-bottom {
+	padding-bottom: 0px;
+}
+
+.mytheme .v-margin-right {
+	padding-right: 0px;
+}
+
+.mytheme .content.v-margin-left {
+	padding-left: 100px;
+}
+
+.mytheme .content.v-margin-top {
+	padding-top: 100px;
 }
