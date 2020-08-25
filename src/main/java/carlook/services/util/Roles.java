@@ -6,5 +6,4 @@ public class Roles {
 
     }
     public static final String KUNDE = "kunde";
-    public static final String CURRENT = "current user";
 }

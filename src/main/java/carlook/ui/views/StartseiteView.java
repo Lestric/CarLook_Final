@@ -6,14 +6,8 @@ import com.vaadin.annotations.Title;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FontAwesome;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
-import carlook.services.util.CSSKonstanten;
+import com.vaadin.ui.*;
 import carlook.services.util.Konstanten;
-import carlook.ui.components.Footer;
-import carlook.ui.components.Sidebar;
 
 @Theme("mytheme")
 @Title("CarLook-Startseite")
@@ -30,36 +24,29 @@ public class StartseiteView extends VerticalLayout implements View {
         //Damit man nicht ein Stückchen scrollen kann
         this.setSizeFull();
 
-        //ist in mytheme festgelegt
-        this.addStyleName(CSSKonstanten.STYLEANNIMATEDBACKGROUND);
-
-        //Container für Sidebar & Content
-        final HorizontalLayout mainFrame = new HorizontalLayout();
-        mainFrame.addStyleName(CSSKonstanten.STYLESTARTMAINFRAME);
-
+        Label wilkommenText = new Label();
+        wilkommenText.setCaptionAsHtml(true);
+        wilkommenText.setCaption("<b><p style=\"font-size:60px ; color:#fcba03; text-shadow: 1px 1px 2px black;\">Willkommen bei CarLook</p></b>");
 
         Button buttonAnmelden = new Button("Login", FontAwesome.HOME);
         buttonAnmelden.setId("btnLogin");
-        buttonAnmelden.addStyleName(CSSKonstanten.STYLESTARTBUTTON);
         buttonAnmelden.setDescription("Sind Sie bereits registriert? Dann loggen Sie sich hier ein.");
         buttonAnmelden.addClickListener(e -> UI.getCurrent().getNavigator().navigateTo(Konstanten.LOGIN));
-        
-        
+
+
         Button buttonRegistrieren = new Button("Registrieren", FontAwesome.USER);
         buttonRegistrieren.setId("btnRegistration");
-        buttonRegistrieren.addStyleName(CSSKonstanten.STYLESTARTBUTTON);
         buttonRegistrieren.setDescription("Registrieren Sie sich hier.");
         buttonRegistrieren.addClickListener(e -> UI.getCurrent().getNavigator().navigateTo(Konstanten.REGISTER));
 
-
-        //Sidebar erzeugen und Elemente hinzufügen
-        Sidebar sidebar = new Sidebar();
-        sidebar.addComponents(buttonAnmelden, buttonRegistrieren);
+        HorizontalLayout hz = new HorizontalLayout();
 
         //Baukasten zusammensetzen
-        mainFrame.addComponents(sidebar, new Footer());
-        mainFrame.setSizeFull();
-        this.addComponent(mainFrame);
+        hz.addComponents(buttonAnmelden, buttonRegistrieren);
+        this.addComponents(wilkommenText, hz);
+        this.setComponentAlignment(wilkommenText, Alignment.TOP_CENTER);
+        this.setComponentAlignment(hz, Alignment.MIDDLE_CENTER);
+        this.setSizeFull();
 
     }
 }

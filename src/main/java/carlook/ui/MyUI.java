@@ -7,11 +7,9 @@ import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
-import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.UI;
 
 import carlook.services.util.Konstanten;
-import carlook.services.util.Roles;
 import carlook.ui.views.*;
 
 
@@ -39,18 +37,16 @@ public class MyUI extends UI {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-        VaadinSession.getCurrent().getSession().setMaxInactiveInterval(900);
 
         navi = new Navigator( this , this);
 
-        VaadinSession.getCurrent().setAttribute(Konstanten.EXTERN, 0);
 
         navi.addView( Konstanten.START, StartseiteView.class );
+        navi.addView( Konstanten.LOGIN, StartseiteView.class );
+        navi.addView( Konstanten.REGISTER, StartseiteView.class );
+        navi.addView( Konstanten.LANDINGPAGE, StartseiteView.class );
 
-
-        //Neue Session -> Startseite, falls Session schon existiert -> LandingPage
-        if(VaadinSession.getCurrent().getAttribute(Roles.CURRENT) != null) UI.getCurrent().getNavigator().navigateTo( Konstanten.LANDINGPAGE );
-        else UI.getCurrent().getNavigator().navigateTo( Konstanten.START );
+        UI.getCurrent().getNavigator().navigateTo( Konstanten.START );
 
 
     }
