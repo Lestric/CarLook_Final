@@ -3,15 +3,11 @@ package carlook.objects.dao;
 
 import carlook.objects.dto.Kunde;
 import carlook.objects.dto.User;
-import carlook.objects.entities.Registrierung;
 import carlook.services.util.HashFunktionsKlasse;
 import carlook.services.util.Roles;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,20 +29,6 @@ public class ProfilDAO extends AbstractDAO {
 
     private static final String WHEREID = "WHERE benutzerid = '";
 
-    public void updateKundeProfile(Kunde kunde){
-        String sql = "UPDATE coll_at_hbrs.student_view SET "
-                + "email = '" + kunde.getEmail() + "', "
-                + "student_vorname = '" + kunde.getVorname() + "', "
-                + "student_nachname = '" + kunde.getNachname() + "', "
-                + "kunde_id = '" + kunde.getKundeId() + "';";
-
-        try(PreparedStatement statement = this.getPreparedStatement(sql)){
-            statement.executeUpdate();
-        }catch(SQLException ex){
-            Logger.getLogger(ProfilDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
 
     public void deleteUser(User user){
         String sql = "";
@@ -63,42 +45,61 @@ public class ProfilDAO extends AbstractDAO {
 
     }
 
-    public void registerKunde(Registrierung reg){
-        String sql = "insert into carlook.benutzer (email, passwort) values (?,?)";
+    public void registerKunde(Kunde kunde){
+
+        // erzeuge Kunden in Kunden Tabelle
+
+        String sql = "insert into carlook.kunde (vorname, nachname) values (?,?)";
         PreparedStatement statement = this.getPreparedStatement(sql);
 
-        //Angaben in student_regsitrierung VIEW schreiben
         try{
-            statement.setString(1, reg.getEmail());
-            statement.setString(2, HashFunktionsKlasse.getHash(reg.getPasswort().getBytes(), "MD5"));
+            statement.setString(1, kunde.getVorname());
+            statement.setString(2, kunde.getNachname());
 
             statement.executeUpdate();
 
         } catch(SQLException ex){
             Logger.getLogger(ProfilDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
 
 
-    public List<Kunde> searchStudent(String name, String ort, String studiengang) throws SQLException { // zu search auto aendern
-        List<Kunde> kundeList = new ArrayList<>();
-        PreparedStatement statement = getStudentStatement(name, ort, studiengang);
+        // frage kundenID für fremdschlüssel und zum speichern in Kunde dto ab
 
-        try(ResultSet rs = statement.executeQuery()){
-            while(rs.next()){
-                Kunde kunde = new Kunde();
-                kunde.setVorname(rs.getString(6));
-                kunde.setNachname(rs.getString(7));
-                kunde.setId(rs.getInt(1));
-                kundeList.add(kunde);
+        String sql_getID = "SELECT kunde_id FROM carlook.kunde ORDER BY kunde_id DESC LIMIT 1";
+        PreparedStatement statement2 = this.getPreparedStatement(sql_getID);
+
+        try(ResultSet set = statement2.executeQuery()){
+
+            if(set.next()){
+                kunde.setId(set.getInt(1));
+                kunde.setKundeId(set.getInt(1));
             }
-        }catch(SQLException exception){
-            Logger.getLogger(ProfilDAO.class.getName()).log(Level.SEVERE, null, exception);
+
+        } catch(SQLException ex){
+            Logger.getLogger(ProfilDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return kundeList;
+
+
+        // erzeuge User Tabelleneintrag mit kundeID = userID und fremdschlüssel und allen Attributen eines Kunden
+
+        String sql3 = "insert into carlook.benutzer (benutzer_id, email, passwort, kunde_id, role) values (?,?,?,?,?)";
+        PreparedStatement statement3 = this.getPreparedStatement(sql3);
+
+        try{
+            statement3.setInt(1, kunde.getId());
+            statement3.setString(2, kunde.getEmail());
+            statement3.setString(3, HashFunktionsKlasse.getHash(kunde.getPasswort().getBytes(), "MD5"));
+            statement3.setInt(4, kunde.getKundeId());
+            statement3.setString(5, kunde.getRole());
+
+            statement3.executeUpdate();
+
+        } catch(SQLException ex){
+            Logger.getLogger(ProfilDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-
+    /*
 
     public PreparedStatement getStudentStatement(String name, String ort, String studiengang) throws SQLException {
         name = name.toUpperCase();
@@ -161,6 +162,8 @@ public class ProfilDAO extends AbstractDAO {
         }
         return statement;
     }
+
+     */
 
 
 }

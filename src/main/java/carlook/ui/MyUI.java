@@ -42,9 +42,9 @@ public class MyUI extends UI {
 
 
         navi.addView( Konstanten.START, StartseiteView.class );
-        navi.addView( Konstanten.LOGIN, StartseiteView.class );
-        navi.addView( Konstanten.REGISTER, StartseiteView.class );
-        navi.addView( Konstanten.LANDINGPAGE, StartseiteView.class );
+        navi.addView( Konstanten.LOGIN, LoginView.class );
+        navi.addView( Konstanten.REGISTER, RegistrierungsView.class );
+        navi.addView( Konstanten.LANDINGPAGE, LandingPage.class );
 
         UI.getCurrent().getNavigator().navigateTo( Konstanten.START );
 
