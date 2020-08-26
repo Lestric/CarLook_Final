@@ -1,6 +1,6 @@
 package carlook.objects.dao;
 
-import com.vaadin.server.VaadinSession;
+
 import carlook.objects.dto.Kunde;
 import carlook.objects.dto.User;
 import carlook.objects.entities.Registrierung;
@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 
 public class ProfilDAO extends AbstractDAO {
 
-    /*
+
 
     private static ProfilDAO dao = null;
     private  ProfilDAO(){
@@ -48,21 +48,6 @@ public class ProfilDAO extends AbstractDAO {
 
     }
 
-
-    public void changePassword(String p1) {
-        User user = (User) VaadinSession.getCurrent().getAttribute(Roles.CURRENT);
-        String sql = "";
-        if(user.getRole().equals(Roles.KUNDE)){
-            sql = "UPDATE carlook.benutzer SET "
-                    + "passwort = '" + HashFunktionsKlasse.getHash(p1.getBytes(), "MD5") +"' "
-                    + WHEREID + user.getId() + "';";
-        }
-        try(PreparedStatement statement = this.getPreparedStatement(sql)) {
-            statement.executeUpdate();
-        } catch (SQLException throwables) {
-            Logger.getLogger(ProfilDAO.class.getName()).log(Level.SEVERE, null, throwables);
-        }
-    }
     public void deleteUser(User user){
         String sql = "";
         if(user.getRole().equals(Roles.KUNDE)){
@@ -177,5 +162,5 @@ public class ProfilDAO extends AbstractDAO {
         return statement;
     }
 
-     */
+
 }

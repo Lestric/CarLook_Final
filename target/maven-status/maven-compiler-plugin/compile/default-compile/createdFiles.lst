@@ -1,9 +1,2 @@
-carlook\ui\views\StartseiteView.class
-carlook\services\util\Roles.class
-carlook\services\util\CSSKonstanten.class
-carlook\control\exceptions\DatabaseException.class
-carlook\ui\MyUI$MyUIServlet.class
 carlook\services\util\Konstanten.class
-carlook\services\db\ZugangDB.class
-carlook\ui\MyUI.class
-carlook\control\exceptions\NoSuchUserOrPassword.class
+carlook\control\exceptions\DatabaseException.class
