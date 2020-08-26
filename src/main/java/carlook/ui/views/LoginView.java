@@ -1,6 +1,7 @@
 package carlook.ui.views;
 
 
+import carlook.services.util.Konstanten;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.event.ShortcutAction;
@@ -73,6 +74,7 @@ public class LoginView extends HorizontalLayout implements View {
 
             try{
                 LoginControl.checkAuthentication(loginEmail,password);
+                UI.getCurrent().getNavigator().navigateTo(Konstanten.LANDINGPAGE);
 
             } catch (NoSuchUserOrPassword noSuchUserOrPassword){
                 Notification.show("Benutzerfehler", "Email-Adresse oder Passwort falsch!", Notification.Type.ERROR_MESSAGE);
