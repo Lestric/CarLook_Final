@@ -1,9 +1,9 @@
 package carlook.control.controls;
 
+import carlook.objects.dto.Kunde;
 import com.vaadin.ui.UI;
 import carlook.control.exceptions.DatabaseException;
 import carlook.control.exceptions.NoSuchUserOrPassword;
-import carlook.objects.dto.User;
 import carlook.services.db.JDBCConnection;
 import carlook.services.util.HashFunktionsKlasse;
 
@@ -22,7 +22,6 @@ public class LoginControl {
 
 
     public static void checkAuthentication(String email, String passwort) throws NoSuchUserOrPassword, DatabaseException, SQLException {
-        User user = new User();
 
         String sql = "SELECT * FROM carlook.benutzer WHERE carlook.benutzer.email = ? AND carlook.benutzer.passwort = ?";
         PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
@@ -31,9 +30,9 @@ public class LoginControl {
 
         try(ResultSet set = statement.executeQuery()){
             if(set.next()){
-                user.setEmail(set.getString(2));
-                user.setId(set.getInt(1));
-                user.setPasswort(set.getString(3));
+                Kunde.setEmail(set.getString(2));
+                Kunde.setId(set.getInt(1));
+                Kunde.setPasswort(set.getString(3));
             }else{
                 throw new NoSuchUserOrPassword();
             }

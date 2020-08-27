@@ -1,4 +1,5 @@
 D:\CarLook_Final\src\main\java\carlook\services\util\Roles.java
+D:\CarLook_Final\src\main\java\carlook\services\util\KundeBuilder.java
 D:\CarLook_Final\src\main\java\carlook\objects\dao\AbstractDAO.java
 D:\CarLook_Final\src\main\java\carlook\ui\components\MenuDropDown.java
 D:\CarLook_Final\src\main\java\carlook\ui\views\RegistrierungsView.java
@@ -9,8 +10,6 @@ D:\CarLook_Final\src\main\java\carlook\services\db\JDBCConnection.java
 D:\CarLook_Final\src\main\java\carlook\services\util\HashFunktionsKlasse.java
 D:\CarLook_Final\src\main\java\carlook\control\exceptions\NoSuchUserOrPassword.java
 D:\CarLook_Final\src\main\java\carlook\ui\views\StartseiteView.java
-D:\CarLook_Final\src\main\java\carlook\objects\entities\Registrierung.java
-D:\CarLook_Final\src\main\java\carlook\services\util\CSSKonstanten.java
 D:\CarLook_Final\src\main\java\carlook\objects\dao\SearchI.java
 D:\CarLook_Final\src\main\java\carlook\objects\dto\Kunde.java
 D:\CarLook_Final\src\main\java\carlook\control\controls\RegistrationControl.java

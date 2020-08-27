@@ -2,9 +2,7 @@ package carlook.objects.dao;
 
 
 import carlook.objects.dto.Kunde;
-import carlook.objects.dto.User;
 import carlook.services.util.HashFunktionsKlasse;
-import carlook.services.util.Roles;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,12 +28,19 @@ public class ProfilDAO extends AbstractDAO {
     private static final String WHEREID = "WHERE benutzerid = '";
 
 
-    public void deleteUser(User user){
-        String sql = "";
-        if(user.getRole().equals(Roles.KUNDE)){
-            sql = "DELETE FROM carlook.benutzer WHERE benutzerid = '" + user.getId() + "' AND "
-            + " DELETE FROM carlook.kunde WHERE kunde_id = '" + user.getId() + "';";
+    public void deleteUser(int id){
+
+        String sql2 = " DELETE FROM carlook.benutzer WHERE benutzer_id = '" + id + "';";
+
+        try {
+            PreparedStatement statement2 = this.getPreparedStatement(sql2);
+            statement2.executeUpdate();
+        } catch (SQLException ex){
+            Logger.getLogger(ProfilDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        String sql = " DELETE FROM carlook.kunde WHERE kunde_id = '" + id + "';";
+
         try {
             PreparedStatement statement = this.getPreparedStatement(sql);
             statement.executeUpdate();

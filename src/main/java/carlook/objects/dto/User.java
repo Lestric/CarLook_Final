@@ -2,50 +2,50 @@ package carlook.objects.dto;
 
 public class User {
 
-    private int id;
-    private String email;
-    private String passwort;
-    private String passwort2;
-    private String role;
+    private static int id;
+    private static String email;
+    private static String passwort;
+    private static String passwort2;
+    private static String role;
 
-    public String getEmail() {
-        return email;
+    public static String getEmail() {
+        return User.email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public static void setEmail(String email) {
+        User.email = email;
     }
 
-    public String getPasswort() {
-        return passwort;
+    public static String getPasswort() {
+        return User.passwort;
     }
 
-    public void setPasswort(String passwort) {
-        this.passwort = passwort;
+    public static void setPasswort(String passwort) {
+        User.passwort = passwort;
     }
 
-    public String getRole() {
-        return role;
+    public static String getRole() {
+        return User.role;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public static void setRole(String role) {
+        User.role = role;
     }
 
-    public int getId() {
-        return id;
+    public static int getId() {
+        return User.id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public static void setId(int id) {
+        User.id = id;
     }
 
-    public String getPasswort2() {
-        return passwort2;
+    public static String getPasswort2() {
+        return User.passwort2;
     }
 
-    public void setPasswort2(String passwort2) {
-        this.passwort2 = passwort2;
+    public static void setPasswort2(String passwort2) {
+        User.passwort2 = passwort2;
     }
 
 
