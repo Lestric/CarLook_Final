@@ -11,7 +11,7 @@ import carlook.services.util.Konstanten;
 
 public class MenuDropDown extends HorizontalLayout {
     public MenuDropDown(){
-        this.setSizeFull();
+
         this.setWidth("100%");
         this.setHeight("30px");
         this.setDefaultComponentAlignment(Alignment.TOP_RIGHT);
@@ -22,10 +22,7 @@ public class MenuDropDown extends HorizontalLayout {
         MenuBar.MenuItem item1 = bar.addItem("", VaadinIcons.MENU, null);
         
 
-        item1.addItem("Mein Profil", VaadinIcons.SPECIALIST, (MenuBar.Command) menuItem -> UI.getCurrent().getNavigator().navigateTo(Konstanten.LANDINGPAGE));
-        item1.addItem("Startseite", VaadinIcons.INBOX, (MenuBar.Command) selectedItem -> UI.getCurrent().getNavigator().navigateTo( Konstanten.START ));
-
-
+        item1.addItem("CarLook", VaadinIcons.SPECIALIST, (MenuBar.Command) menuItem -> UI.getCurrent().getNavigator().navigateTo(Konstanten.LANDINGPAGE));
 
         //Logout des Users
         item1.addItem("Logout", VaadinIcons.SIGN_OUT, (MenuBar.Command) selectedItem -> LoginControl.logoutUser());

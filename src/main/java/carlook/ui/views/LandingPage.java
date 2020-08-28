@@ -10,12 +10,10 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
-import carlook.ui.components.MenuDropDown;
+
 
 @Title("Carlook")
 @Theme("mytheme")
-
-
 
 public class LandingPage extends VerticalLayout implements View {
 
@@ -32,7 +30,7 @@ public class LandingPage extends VerticalLayout implements View {
         Panel panel = new Panel();
 
         panel.setSizeUndefined();
-        this.addComponent(panel);
+        this.addComponents(panel);
         this.setComponentAlignment(panel, Alignment.MIDDLE_CENTER);
 
         // 3 Buttons für Logout, User löschen und Auto Suche View
@@ -61,11 +59,6 @@ public class LandingPage extends VerticalLayout implements View {
         content.setSizeUndefined();
         content.setMargin(true);
         panel.setContent(content);
-
-
-        this.addComponents();
-        this.setSizeFull();
-        this.addComponent(new MenuDropDown());
 
     }
 

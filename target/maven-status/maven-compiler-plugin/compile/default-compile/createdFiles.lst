@@ -1,4 +1,5 @@
 carlook\ui\views\StartseiteView.class
+carlook\ui\views\AutoSucheView.class
 carlook\services\util\Roles.class
 carlook\control\exceptions\DatabaseException.class
 carlook\ui\MyUI$MyUIServlet.class
