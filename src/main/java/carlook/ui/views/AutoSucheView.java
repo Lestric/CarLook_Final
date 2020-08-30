@@ -1,19 +1,26 @@
 package carlook.ui.views;
 
+import carlook.objects.dao.ProfilDAO;
+import carlook.objects.dto.Auto;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Panel;
-import com.vaadin.ui.TextField;
-import com.vaadin.ui.VerticalLayout;
-import carlook.ui.components.MenuDropDown;
+import com.vaadin.shared.ui.ContentMode;
+import com.vaadin.ui.*;
+import com.vaadin.ui.renderers.ButtonRenderer;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Title("Carlook")
 @Theme("mytheme")
 
 public class AutoSucheView extends VerticalLayout implements View {
+
+    Panel panel = new Panel();
 
     public void enter(ViewChangeListener.ViewChangeEvent event) {
 
@@ -25,30 +32,97 @@ public class AutoSucheView extends VerticalLayout implements View {
         //Damit man nicht ein Stückchen scrollen kann
         this.setSizeFull();
 
-        MenuDropDown dropDown = new MenuDropDown();
-        this.addComponent(dropDown);
-        this.setComponentAlignment(dropDown, Alignment.TOP_RIGHT);
+        Label lblMarke = new Label();
+        lblMarke.setCaptionAsHtml(true);
+        lblMarke.setCaption("<p style=\"font-size:22px ; color:#fcba03; text-shadow: 1px 1px 1px black;\">Marke: </p>");
 
-        //Panel zur eingabe der Suchkriterien
-
-        Panel panel = new Panel();
-        panel.setSizeUndefined();
-        this.addComponents(panel);
-        this.setComponentAlignment(panel, Alignment.TOP_CENTER);
+        Label lblModell = new Label();
+        lblModell.setCaptionAsHtml(true);
+        lblModell.setCaption("<p style=\"font-size:22px ; color:#fcba03; text-shadow: 1px 1px 1px black;\">Modell: </p>");
 
         TextField tfMarke = new TextField();
         tfMarke.setDescription("Fügen Sie eine Marke für die Suche hinzu.");
         tfMarke.setValue("");
-        tfMarke.setCaption("Marke:");
 
         TextField tfModell = new TextField();
         tfModell.setDescription("Fügen Sie ein Modell für die Suche hinzu.");
         tfModell.setValue("");
-        tfMarke.setCaption("Modell:");
 
-        // Erstellung Tabelle mit Autos
+        // Arbeiten mit Valuechange Listener 
+
+        tfMarke.addValueChangeListener(e -> {
+            onTheFlySearch(tfMarke.getValue(), tfModell.getValue());
+        });
+
+        tfModell.addValueChangeListener(e -> {
+            onTheFlySearch(tfMarke.getValue(), tfModell.getValue());
+        });
+
+        HorizontalLayout hzSuche = new HorizontalLayout();
+        hzSuche.addComponents(lblMarke, tfMarke, new Label("&nbsp", ContentMode.HTML), lblModell, tfModell);
+        hzSuche.setComponentAlignment(tfMarke, Alignment.MIDDLE_CENTER);
+        hzSuche.setComponentAlignment(tfModell, Alignment.MIDDLE_CENTER);
+
+        //Panel zur eingabe der Suchkriterien
+
+        panel.setSizeUndefined();
+        panel.setContent(hzSuche);
+        panel.setWidth("50%");
+        panel.setCaptionAsHtml(true);
+        panel.setCaption("<b><p style=\"font-size:25px ; color:#fcba03; text-shadow: 1px 1px 1px black;\">Autosuche</p></b>");
+
+        cleanView();
+
+        onTheFlySearch(tfMarke.getValue(), tfModell.getValue());
+
+    }
+
+    private void cleanView(){
+
+        this.removeAllComponents();
+        this.addComponents(panel);
+        this.setComponentAlignment(panel, Alignment.TOP_LEFT);
+    }
 
 
+    public void onTheFlySearch(String marke, String modell){
+
+        cleanView();
+
+        //Erstellung Tabelle mit Autos
+        Grid<Auto> autoGrid = new Grid<>();
+        autoGrid.setSizeUndefined();
+        List<Auto> autoList = null;
+
+        try {
+            autoList = ProfilDAO.getInstance().searchAutos(marke, modell);
+        } catch (SQLException ex) {
+            Logger.getLogger(AutoSucheView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        autoGrid.removeAllColumns();
+        autoGrid.setCaptionAsHtml(true);
+        autoGrid.setCaption(" <span style='color:#fcba03; font-size:20px; text-shadow: 1px 1px 1px black '> " + (marke.equals("") ? "Alle Autos:" : "Ergebnisse für: " + marke) + " </span>");
+        autoGrid.setItems(autoList);
+        autoGrid.setHeightByRows(!autoList.isEmpty() ? autoList.size() : 1);
+
+        autoGrid.addColumn(Auto::getMarke).setCaption("Marke");
+        autoGrid.addColumn(Auto::getModell).setCaption("Modell");
+        autoGrid.addColumn(Auto::getPreis).setCaption("Preis");
+        autoGrid.addColumn(Auto::getBaujahr).setCaption("Baujahr");
+        autoGrid.addColumn(Auto::getZustand).setCaption("Zustand");
+        autoGrid.addColumn(Auto::getBeschreibung).setCaption("Beschreibung");
+        autoGrid.addColumn(Auto -> "Reservieren",
+                new ButtonRenderer<>(clickEvent -> {
+
+
+                    // Reservierung hier
+
+
+                } ));
+
+        this.addComponents(new Label("&nbsp" , ContentMode.HTML), autoGrid, new Label("&nbsp" , ContentMode.HTML));
+        autoGrid.setWidth("80%");
 
     }
 

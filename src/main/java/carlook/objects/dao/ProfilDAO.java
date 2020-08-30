@@ -1,11 +1,14 @@
 package carlook.objects.dao;
 
 
+import carlook.objects.dto.Auto;
 import carlook.objects.dto.Kunde;
 import carlook.services.util.HashFunktionsKlasse;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -104,71 +107,67 @@ public class ProfilDAO extends AbstractDAO {
         }
     }
 
-    /*
+    public List<Auto> searchAutos(String marke, String modell) throws SQLException {
 
-    public PreparedStatement getStudentStatement(String name, String ort, String studiengang) throws SQLException {
-        name = name.toUpperCase();
-        ort = ort.toUpperCase();
-        studiengang = studiengang.toUpperCase();
-        String basic = "SELECT * FROM carlook.kunde";
-        PreparedStatement statement;
+        marke = marke.toUpperCase();
+        modell = modell.toUpperCase();
+        String basic = "SELECT * FROM carlook.auto";
         String sql;
+        PreparedStatement statement;
 
-        if (name.equals("")) {
-            if (ort.equals("")) {
-                if (studiengang.equals("")) {
-                    statement = this.getPreparedStatement(basic);
-                    return statement;
-                }
-                sql = basic + " WHERE UPPER(student_studiengang) LIKE ?";
+        if (marke.equals("")) {
+            if (modell.equals("")) {
+
+                // beide leer
+                sql = basic;
                 statement = this.getPreparedStatement(sql);
-                statement.setString(1, "%"+ studiengang + "%");
-                return statement;
-            }
-            else {
-                if (studiengang.equals("")) {
-                    sql = basic + " WHERE UPPER(adresse_ort) = ?";
-                    statement = this.getPreparedStatement(sql);
-                    statement.setString(1, ort);
-                    return statement;
-                }
-            }
-            sql = basic + " WHERE UPPER(adresse_ort) = ? AND UPPER(student_studiengang) LIKE ?";
-            statement = this.getPreparedStatement(sql);
-            statement.setString(1, ort);
-            statement.setString(2, "%" + studiengang + "%");
-            return statement;
-        }
-        if (ort.equals("")) {
-            if (studiengang.equals("")) {
-                sql = basic + " WHERE UPPER(student_nachname) LIKE ?";
+
+            } else {
+
+                //marke leer
+                sql = basic + " WHERE UPPER(modell) LIKE ?";
                 statement = this.getPreparedStatement(sql);
-                statement.setString(1, "%" + name + "%");
-                return statement;
+                statement.setString(1, "%"+ modell + "%");
+
             }
-            sql = basic + " WHERE UPPER(student_nachname) LIKE ? AND UPPER(student_studiengang) LIKE ?";
-            statement = this.getPreparedStatement(sql);
-            statement.setString(1, "%" + name + "%");
-            statement.setString(2, "%" + studiengang + "%");
-            return statement;
+        }else {
+            if(modell.equals("")){
+
+                //modell leer
+                sql = basic + " WHERE UPPER(marke) LIKE ?";
+                statement = this.getPreparedStatement(sql);
+                statement.setString(1, "%" + marke + "%");
+
+            }else{
+
+                // beide voll
+                sql = basic + " WHERE UPPER(marke) LIKE ? AND UPPER(modell) LIKE ?";
+                statement = this.getPreparedStatement(sql);
+                statement.setString(1, "%" + marke + "%");
+                statement.setString(2, "%" + modell + "%");
+            }
         }
-        if(studiengang.equals("")){
-            sql = basic + " WHERE UPPER(student_nachname) LIKE ? AND UPPER(adresse_ort) = ?";
-            statement = this.getPreparedStatement(sql);
-            statement.setString(1, "%" + name + "%");
-            statement.setString(2, ort);
+
+        List<Auto> retListAuto = new ArrayList<>();
+
+        ResultSet rs = statement.executeQuery();
+
+        while(rs.next()){
+
+            Auto auto = new Auto();
+            auto.setAuto_id(rs.getInt(1));
+            auto.setMarke(rs.getString(2));
+            auto.setBaujahr(rs.getString(3));
+            auto.setModell(rs.getString(4));
+            auto.setZustand(rs.getString(5));
+            auto.setBeschreibung(rs.getString(6));
+            auto.setPreis(rs.getInt(7));
+            retListAuto.add(auto);
+
         }
-        else{
-            sql = basic + " WHERE UPPER(student_nachname) LIKE ? AND UPPER(adresse_ort) = ? AND UPPER(student_studiengang) LIKE ?";
-            statement = this.getPreparedStatement(sql);
-            statement.setString(1, "%" + name + "%");
-            statement.setString(2, ort);
-            statement.setString(3, "%" + studiengang + "%");
-        }
-        return statement;
+
+
+        return retListAuto;
     }
-
-     */
-
 
 }

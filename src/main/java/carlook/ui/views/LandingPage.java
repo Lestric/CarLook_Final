@@ -3,6 +3,7 @@ package carlook.ui.views;
 import carlook.control.controls.LoginControl;
 import carlook.objects.dao.ProfilDAO;
 import carlook.objects.dto.Kunde;
+import carlook.services.util.Konstanten;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.navigator.View;
@@ -46,10 +47,10 @@ public class LandingPage extends VerticalLayout implements View {
             LoginControl.logoutUser();
         });
 
-        Button btAutoView = new Button("Logout", FontAwesome.CAR);
+        Button btAutoView = new Button("Autos suchen", FontAwesome.CAR);
         btAutoView.setDescription("Hier können Sie Autos suchen.");
         btAutoView.addClickListener(e ->{
-
+            UI.getCurrent().getNavigator().navigateTo( Konstanten.AUTOSUCHE );
         });
 
         // content
