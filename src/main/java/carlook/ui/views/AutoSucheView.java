@@ -1,7 +1,7 @@
 package carlook.ui.views;
 
 import carlook.control.controls.ReservationControl;
-import carlook.objects.dao.ProfilDAO;
+import carlook.objects.dao.UserSearchReservDAO;
 import carlook.objects.dto.Auto;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
@@ -96,7 +96,7 @@ public class AutoSucheView extends VerticalLayout implements View {
         List<Auto> autoList = null;
 
         try {
-            autoList = ProfilDAO.getInstance().searchAutos(marke, modell);
+            autoList = UserSearchReservDAO.getInstance().searchAutos(marke, modell);
         } catch (SQLException ex) {
             Logger.getLogger(AutoSucheView.class.getName()).log(Level.SEVERE, null, ex);
         }

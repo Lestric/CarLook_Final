@@ -1,6 +1,6 @@
 package carlook.control.controls;
 
-import carlook.objects.dao.ProfilDAO;
+import carlook.objects.dao.UserSearchReservDAO;
 import carlook.objects.dto.Auto;
 import carlook.objects.dto.Kunde;
 
@@ -39,19 +39,19 @@ public class ReservationControl {
 
         //Dao aufrufen und beide ids übergeben für db eintrag
 
-        ProfilDAO.getInstance().createReservation(this.auto_id, this.kunden_id);
+        UserSearchReservDAO.getInstance().createReservation(this.auto_id, this.kunden_id);
 
     }
 
     public List<Auto> getAllReservations() throws SQLException {
 
-        List<Integer> autoIds = ProfilDAO.getInstance().getAllReservationForKunde(Kunde.getKundeId());
+        List<Integer> autoIds = UserSearchReservDAO.getInstance().getAllReservationForKunde(Kunde.getKundeId());
 
         List<Auto> retListAutos = new ArrayList<>();
 
         for(Integer id : autoIds){
 
-            ProfilDAO.getInstance().searchAutos(id, retListAutos);
+            UserSearchReservDAO.getInstance().searchAutos(id, retListAutos);
 
         }
 

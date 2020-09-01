@@ -2,7 +2,7 @@ package carlook.ui.views;
 
 import carlook.control.controls.LoginControl;
 import carlook.control.controls.ReservationControl;
-import carlook.objects.dao.ProfilDAO;
+import carlook.objects.dao.UserSearchReservDAO;
 import carlook.objects.dto.Auto;
 import carlook.objects.dto.Kunde;
 import carlook.services.util.Konstanten;
@@ -50,7 +50,7 @@ public class LandingPage extends VerticalLayout implements View {
         Button btloeschen = new Button("Profil löschen", FontAwesome.REMOVE);
         btloeschen.setDescription("Hier können Sie ihr Profil löschen.");
         btloeschen.addClickListener(e -> {
-            ProfilDAO.getInstance().deleteUser(Kunde.getId());
+            UserSearchReservDAO.getInstance().deleteUser(Kunde.getId());
             LoginControl.logoutUser();
         });
 
@@ -73,6 +73,8 @@ public class LandingPage extends VerticalLayout implements View {
             windowResCars.setSizeUndefined();
 
             windowResCars.setContent(getWindowContentCars());
+
+            UI.getCurrent().addWindow(windowResCars);
 
         });
 
@@ -112,7 +114,7 @@ public class LandingPage extends VerticalLayout implements View {
         autoGrid.addColumn(Auto::getPreis).setCaption("Preis");
         autoGrid.addColumn(Auto::getBeschreibung).setCaption("Beschreibung");
 
-        autoGrid.setWidth("70%");
+        autoGrid.setWidth("800px");
 
         vl.addComponents(new Label("&nbsp" , ContentMode.HTML), autoGrid, new Label("&nbsp" , ContentMode.HTML));
 

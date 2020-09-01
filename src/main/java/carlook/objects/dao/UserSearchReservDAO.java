@@ -13,17 +13,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class ProfilDAO extends AbstractDAO {
+public class UserSearchReservDAO extends AbstractDAO {
 
 
 
-    private static ProfilDAO dao = null;
-    private  ProfilDAO(){
+    private static UserSearchReservDAO dao = null;
+    private UserSearchReservDAO(){
 
     }
-    public static ProfilDAO getInstance(){
+    public static UserSearchReservDAO getInstance(){
         if(dao == null){
-            dao = new ProfilDAO();
+            dao = new UserSearchReservDAO();
         }
         return dao;
     }
@@ -39,7 +39,7 @@ public class ProfilDAO extends AbstractDAO {
             PreparedStatement statement2 = this.getPreparedStatement(sql2);
             statement2.executeUpdate();
         } catch (SQLException ex){
-            Logger.getLogger(ProfilDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserSearchReservDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         String sql = " DELETE FROM carlook.kunde WHERE kunde_id = '" + id + "';";
@@ -48,7 +48,7 @@ public class ProfilDAO extends AbstractDAO {
             PreparedStatement statement = this.getPreparedStatement(sql);
             statement.executeUpdate();
         } catch (SQLException ex){
-            Logger.getLogger(ProfilDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserSearchReservDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -67,7 +67,7 @@ public class ProfilDAO extends AbstractDAO {
             statement.executeUpdate();
 
         } catch(SQLException ex){
-            Logger.getLogger(ProfilDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserSearchReservDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
 
@@ -84,7 +84,7 @@ public class ProfilDAO extends AbstractDAO {
             }
 
         } catch(SQLException ex){
-            Logger.getLogger(ProfilDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserSearchReservDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
 
@@ -103,7 +103,7 @@ public class ProfilDAO extends AbstractDAO {
             statement3.executeUpdate();
 
         } catch(SQLException ex){
-            Logger.getLogger(ProfilDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserSearchReservDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -170,12 +170,12 @@ public class ProfilDAO extends AbstractDAO {
         return retListAuto;
     }
 
-    public List<Auto> searchAutos(int autoID, List<Auto> retListAuto) throws SQLException {
+    public List<Auto> searchAutos(Integer autoID, List<Auto> retListAuto) throws SQLException {
 
         String sql;
         PreparedStatement statement;
 
-        sql = "SELECT * FROM carlook.auto" + " WHERE auto_id LIKE ? ";
+        sql = "SELECT * FROM carlook.auto" + " WHERE auto_id = ? ";
         statement = this.getPreparedStatement(sql);
         statement.setInt(1,   autoID );
 
@@ -204,7 +204,7 @@ public class ProfilDAO extends AbstractDAO {
 
         // erzeuge neue Zeile mit beiden IDs
 
-        String sql = "insert into carlook.benutzer_reserviert_auto (kundeid, autoid) values (?,?)";
+        String sql = "insert into carlook.benutzer_reserviert_auto (kunde_id, auto_id) values (?,?) ON CONFLICT (kunde_id, auto_id) DO NOTHING;";
         PreparedStatement statement = this.getPreparedStatement(sql);
 
         try{
@@ -214,7 +214,7 @@ public class ProfilDAO extends AbstractDAO {
             statement.executeUpdate();
 
         } catch(SQLException ex){
-            Logger.getLogger(ProfilDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserSearchReservDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -224,7 +224,7 @@ public class ProfilDAO extends AbstractDAO {
         String sql;
         PreparedStatement statement;
 
-        sql = "SELECT * FROM carlook.benutzer_reserviert_auto" + " WHERE kundeid LIKE ? ";
+        sql = "SELECT * FROM carlook.benutzer_reserviert_auto" + " WHERE kunde_id = ? ";
         statement = this.getPreparedStatement(sql);
         statement.setInt(1, kundeID);
 

@@ -1,7 +1,7 @@
 package carlook.control.controls;
 
 import carlook.control.exceptions.DatabaseException;
-import carlook.objects.dao.ProfilDAO;
+import carlook.objects.dao.UserSearchReservDAO;
 import carlook.objects.dto.Kunde;
 import carlook.objects.factories.RegFactory;
 import carlook.services.db.JDBCConnection;
@@ -72,7 +72,7 @@ public class RegistrationControl {
 
         if(result.getResult()){
             if(rolle.equals(Roles.KUNDE)) {
-                ProfilDAO.getInstance().registerKunde(kunde);
+                UserSearchReservDAO.getInstance().registerKunde(kunde);
             }
         }
 
