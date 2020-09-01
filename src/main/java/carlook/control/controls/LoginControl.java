@@ -32,6 +32,7 @@ public class LoginControl {
             if(set.next()){
                 Kunde.setEmail(set.getString(2));
                 Kunde.setId(set.getInt(1));
+                Kunde.setKundeId(set.getInt(1));
                 Kunde.setPasswort(set.getString(3));
             }else{
                 throw new NoSuchUserOrPassword();

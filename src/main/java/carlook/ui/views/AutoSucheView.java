@@ -1,5 +1,6 @@
 package carlook.ui.views;
 
+import carlook.control.controls.ReservationControl;
 import carlook.objects.dao.ProfilDAO;
 import carlook.objects.dto.Auto;
 import com.vaadin.annotations.Theme;
@@ -115,14 +116,19 @@ public class AutoSucheView extends VerticalLayout implements View {
         autoGrid.addColumn(Auto -> "Reservieren",
                 new ButtonRenderer<>(clickEvent -> {
 
-
-                    // Reservierung hier
-
+                    // Reservierung startet hier
+                    reserviereAuto(clickEvent.getItem().getAuto_id());
 
                 } ));
 
         this.addComponents(new Label("&nbsp" , ContentMode.HTML), autoGrid, new Label("&nbsp" , ContentMode.HTML));
         autoGrid.setWidth("80%");
+
+    }
+
+    public void reserviereAuto(int autoId){
+
+        ReservationControl.getInstance().createReservation(autoId);
 
     }
 

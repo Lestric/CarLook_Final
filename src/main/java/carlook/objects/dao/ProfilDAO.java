@@ -170,4 +170,75 @@ public class ProfilDAO extends AbstractDAO {
         return retListAuto;
     }
 
+    public List<Auto> searchAutos(int autoID, List<Auto> retListAuto) throws SQLException {
+
+        String sql;
+        PreparedStatement statement;
+
+        sql = "SELECT * FROM carlook.auto" + " WHERE auto_id LIKE ? ";
+        statement = this.getPreparedStatement(sql);
+        statement.setInt(1,   autoID );
+
+        ResultSet rs = statement.executeQuery();
+
+        while(rs.next()){
+
+            Auto auto = new Auto();
+            auto.setAuto_id(rs.getInt(1));
+            auto.setMarke(rs.getString(2));
+            auto.setBaujahr(rs.getString(3));
+            auto.setModell(rs.getString(4));
+            auto.setZustand(rs.getString(5));
+            auto.setBeschreibung(rs.getString(6));
+            auto.setPreis(rs.getInt(7));
+            retListAuto.add(auto);
+
+        }
+
+
+        return retListAuto;
+
+    }
+
+    public void createReservation(int autoID, int kundeID){
+
+        // erzeuge neue Zeile mit beiden IDs
+
+        String sql = "insert into carlook.benutzer_reserviert_auto (kundeid, autoid) values (?,?)";
+        PreparedStatement statement = this.getPreparedStatement(sql);
+
+        try{
+            statement.setInt(1, kundeID);
+            statement.setInt(2, autoID);
+
+            statement.executeUpdate();
+
+        } catch(SQLException ex){
+            Logger.getLogger(ProfilDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public List<Integer> getAllReservationForKunde(int kundeID) throws  SQLException{
+
+        String sql;
+        PreparedStatement statement;
+
+        sql = "SELECT * FROM carlook.benutzer_reserviert_auto" + " WHERE kundeid LIKE ? ";
+        statement = this.getPreparedStatement(sql);
+        statement.setInt(1, kundeID);
+
+        ResultSet rs = statement.executeQuery();
+
+        List<Integer> autoIdList = new ArrayList<>();
+
+        while(rs.next()){
+            autoIdList.add(rs.getInt(2));
+        }
+
+
+        return autoIdList;
+
+    }
+
 }

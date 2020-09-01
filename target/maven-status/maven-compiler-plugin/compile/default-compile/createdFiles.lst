@@ -8,4 +8,5 @@ carlook\services\db\ZugangDB.class
 carlook\services\util\KundeBuilder.class
 carlook\ui\MyUI.class
 carlook\objects\dto\Auto.class
+carlook\control\controls\ReservationControl.class
 carlook\control\exceptions\NoSuchUserOrPassword.class
