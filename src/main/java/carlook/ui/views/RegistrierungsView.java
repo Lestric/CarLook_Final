@@ -1,6 +1,6 @@
 package carlook.ui.views;
 
-import carlook.objects.dto.Kunde;
+import carlook.objects.dto.Kundedto;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.event.ShortcutAction;
@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 public class RegistrierungsView extends HorizontalLayout implements View {
 
     private String rolle = "kunde";
-    private Kunde kunde =  new Kunde();
+    private Kundedto kundedto =  new Kundedto();
 
     public void setUp(){
 
@@ -78,12 +78,12 @@ public class RegistrierungsView extends HorizontalLayout implements View {
             RegistrationResult r = null;
 
             if(rolle.equals(Roles.KUNDE)) {
-                kunde = KundeBuilder.getInstance().createNewUser().withEmail(emailField.getValue()).withPw(passwortField.getValue()).with2ndPw(passwortField2.getValue()).withVorname(vornameField.getValue()).withNachname(nachnameField.getValue()).getKunde();
-                kunde.setRole(Roles.KUNDE);
+                kundedto = KundeBuilder.getInstance().createNewUser().withEmail(emailField.getValue()).withPw(passwortField.getValue()).with2ndPw(passwortField2.getValue()).withVorname(vornameField.getValue()).withNachname(nachnameField.getValue()).getKundedto();
+                kundedto.setRole(Roles.KUNDE);
             }
 
             try {
-                r = RegistrationControl.getInstance().createRegistration(kunde);
+                r = RegistrationControl.getInstance().createRegistration(kundedto);
             } catch (SQLException | DatabaseException exception) {
                 Logger.getLogger(carlook.ui.views.RegistrierungsView.class.getName()).log(Level.SEVERE, null, exception);
             }

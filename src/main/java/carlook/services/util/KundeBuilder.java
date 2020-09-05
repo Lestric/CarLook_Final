@@ -1,15 +1,15 @@
 package carlook.services.util;
 
 
-import carlook.objects.dto.Kunde;
+import carlook.objects.dto.Kundedto;
 
 public class KundeBuilder {
 
     private static KundeBuilder builder = null;
-    private Kunde kunde = null;
+    private Kundedto kundedto = null;
 
     public KundeBuilder createNewUser(){
-        this.kunde = new Kunde();
+        this.kundedto = new Kundedto();
         return builder;
     }
     public static KundeBuilder getInstance(){
@@ -18,31 +18,31 @@ public class KundeBuilder {
     }
 
     public KundeBuilder withEmail(String email){
-        this.kunde.setEmail(email);
+        this.kundedto.setEmail(email);
         return this;
     }
 
     public KundeBuilder withPw(String pw){
-        this.kunde.setPasswort(pw);
+        this.kundedto.setPasswort(pw);
         return this;
     }
 
     public KundeBuilder with2ndPw(String pw){
-        this.kunde.setPasswort2(pw);
+        this.kundedto.setPasswort2(pw);
         return this;
     }
 
     public KundeBuilder withVorname(String vn){
-        this.kunde.setVorname(vn);
+        this.kundedto.setVorname(vn);
         return this;
     }
 
     public KundeBuilder withNachname(String Nn){
-        this.kunde.setNachname(Nn);
+        this.kundedto.setNachname(Nn);
         return this;
     }
 
-    public Kunde getKunde(){
-        return this.kunde;
+    public Kundedto getKundedto(){
+        return this.kundedto;
     }
 }

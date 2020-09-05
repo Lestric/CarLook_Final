@@ -2,7 +2,7 @@ package carlook.control.controls;
 
 import carlook.control.exceptions.DatabaseException;
 import carlook.objects.dao.UserSearchReservDAO;
-import carlook.objects.dto.Kunde;
+import carlook.objects.dto.Kundedto;
 import carlook.objects.factories.RegFactory;
 import carlook.services.db.JDBCConnection;
 import carlook.services.util.RegistrationResult;
@@ -27,13 +27,13 @@ public class RegistrationControl {
         return process;
     }
 
-    public RegistrationResult createRegistration(Kunde request) throws SQLException, DatabaseException {
+    public RegistrationResult createRegistration(Kundedto request) throws SQLException, DatabaseException {
         RegistrationResult result = new RegistrationResult();
         result.setResult(true);
-        Kunde kunde;
+        Kundedto kundedto;
         String rolle = request.getRole();
 
-        kunde = RegFactory.createKundeReg(request);
+        kundedto = RegFactory.createKundeReg(request);
 
 
         if (!request.getPasswort2().equals(request.getPasswort())){
@@ -72,7 +72,7 @@ public class RegistrationControl {
 
         if(result.getResult()){
             if(rolle.equals(Roles.KUNDE)) {
-                UserSearchReservDAO.getInstance().registerKunde(kunde);
+                UserSearchReservDAO.getInstance().registerKunde(kundedto);
             }
         }
 

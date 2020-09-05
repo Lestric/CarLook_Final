@@ -1,6 +1,6 @@
 package carlook.objects.dto;
 
-public class Auto {
+public class Autodto {
 
     private int auto_id;
     private String marke;

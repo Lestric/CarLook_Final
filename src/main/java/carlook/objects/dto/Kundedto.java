@@ -1,7 +1,7 @@
 package carlook.objects.dto;
 
 
-public class Kunde extends User {
+public class Kundedto extends User {
 
     private static String vorname;
     private static String nachname;
@@ -9,26 +9,26 @@ public class Kunde extends User {
 
 
     public static String getVorname() {
-        return Kunde.vorname;
+        return Kundedto.vorname;
     }
 
     public static void setVorname(String vorname) {
-        Kunde.vorname = vorname;
+        Kundedto.vorname = vorname;
     }
 
     public static String getNachname() {
-        return Kunde.nachname;
+        return Kundedto.nachname;
     }
 
     public static void setNachname(String nachname) {
-        Kunde.nachname = nachname;
+        Kundedto.nachname = nachname;
     }
 
     public static int getKundeId() {
-        return Kunde.kundeId;
+        return Kundedto.kundeId;
     }
 
     public static void setKundeId(int kundeId) {
-        Kunde.kundeId = kundeId;
+        Kundedto.kundeId = kundeId;
     }
 }

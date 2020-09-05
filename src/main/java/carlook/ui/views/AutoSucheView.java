@@ -2,7 +2,7 @@ package carlook.ui.views;
 
 import carlook.control.controls.ReservationControl;
 import carlook.objects.dao.UserSearchReservDAO;
-import carlook.objects.dto.Auto;
+import carlook.objects.dto.Autodto;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.navigator.View;
@@ -91,12 +91,12 @@ public class AutoSucheView extends VerticalLayout implements View {
         cleanView();
 
         //Erstellung Tabelle mit Autos
-        Grid<Auto> autoGrid = new Grid<>();
+        Grid<Autodto> autoGrid = new Grid<>();
         autoGrid.setSizeUndefined();
-        List<Auto> autoList = null;
+        List<Autodto> autodtoList = null;
 
         try {
-            autoList = UserSearchReservDAO.getInstance().searchAutos(marke, modell);
+            autodtoList = UserSearchReservDAO.getInstance().searchAutos(marke, modell);
         } catch (SQLException ex) {
             Logger.getLogger(AutoSucheView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -104,16 +104,16 @@ public class AutoSucheView extends VerticalLayout implements View {
         autoGrid.removeAllColumns();
         autoGrid.setCaptionAsHtml(true);
         autoGrid.setCaption(" <span style='color:#fcba03; font-size:20px; text-shadow: 1px 1px 1px black '> " + (marke.equals("") ? "Alle Autos:" : "Ergebnisse für: " + marke) + " </span>");
-        autoGrid.setItems(autoList);
-        autoGrid.setHeightByRows(!autoList.isEmpty() ? autoList.size() : 1);
+        autoGrid.setItems(autodtoList);
+        autoGrid.setHeightByRows(!autodtoList.isEmpty() ? autodtoList.size() : 1);
 
-        autoGrid.addColumn(Auto::getMarke).setCaption("Marke");
-        autoGrid.addColumn(Auto::getModell).setCaption("Modell");
-        autoGrid.addColumn(Auto::getPreis).setCaption("Preis");
-        autoGrid.addColumn(Auto::getBaujahr).setCaption("Baujahr");
-        autoGrid.addColumn(Auto::getZustand).setCaption("Zustand");
-        autoGrid.addColumn(Auto::getBeschreibung).setCaption("Beschreibung");
-        autoGrid.addColumn(Auto -> "Reservieren",
+        autoGrid.addColumn(Autodto::getMarke).setCaption("Marke");
+        autoGrid.addColumn(Autodto::getModell).setCaption("Modell");
+        autoGrid.addColumn(Autodto::getPreis).setCaption("Preis");
+        autoGrid.addColumn(Autodto::getBaujahr).setCaption("Baujahr");
+        autoGrid.addColumn(Autodto::getZustand).setCaption("Zustand");
+        autoGrid.addColumn(Autodto::getBeschreibung).setCaption("Beschreibung");
+        autoGrid.addColumn(Autodto -> "Reservieren",
                 new ButtonRenderer<>(clickEvent -> {
 
                     // Reservierung startet hier

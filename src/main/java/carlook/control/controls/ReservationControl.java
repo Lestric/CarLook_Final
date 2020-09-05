@@ -1,8 +1,8 @@
 package carlook.control.controls;
 
 import carlook.objects.dao.UserSearchReservDAO;
-import carlook.objects.dto.Auto;
-import carlook.objects.dto.Kunde;
+import carlook.objects.dto.Autodto;
+import carlook.objects.dto.Kundedto;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ public class ReservationControl {
     }
 
     private void setzeKunden_id(){
-        this.kunden_id = Kunde.getKundeId();
+        this.kunden_id = Kundedto.getKundeId();
     }
 
     public void createReservation(int auto_id){
@@ -43,19 +43,19 @@ public class ReservationControl {
 
     }
 
-    public List<Auto> getAllReservations() throws SQLException {
+    public List<Autodto> getAllReservations() throws SQLException {
 
-        List<Integer> autoIds = UserSearchReservDAO.getInstance().getAllReservationForKunde(Kunde.getKundeId());
+        List<Integer> autoIds = UserSearchReservDAO.getInstance().getAllReservationForKunde(Kundedto.getKundeId());
 
-        List<Auto> retListAutos = new ArrayList<>();
+        List<Autodto> retListAutodtos = new ArrayList<>();
 
         for(Integer id : autoIds){
 
-            UserSearchReservDAO.getInstance().searchAutos(id, retListAutos);
+            UserSearchReservDAO.getInstance().searchAutos(id, retListAutodtos);
 
         }
 
-        return retListAutos;
+        return retListAutodtos;
     }
 
 }

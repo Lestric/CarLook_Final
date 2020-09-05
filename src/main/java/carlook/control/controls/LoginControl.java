@@ -1,6 +1,6 @@
 package carlook.control.controls;
 
-import carlook.objects.dto.Kunde;
+import carlook.objects.dto.Kundedto;
 import com.vaadin.ui.UI;
 import carlook.control.exceptions.DatabaseException;
 import carlook.control.exceptions.NoSuchUserOrPassword;
@@ -30,10 +30,10 @@ public class LoginControl {
 
         try(ResultSet set = statement.executeQuery()){
             if(set.next()){
-                Kunde.setEmail(set.getString(2));
-                Kunde.setId(set.getInt(1));
-                Kunde.setKundeId(set.getInt(1));
-                Kunde.setPasswort(set.getString(3));
+                Kundedto.setEmail(set.getString(2));
+                Kundedto.setId(set.getInt(1));
+                Kundedto.setKundeId(set.getInt(1));
+                Kundedto.setPasswort(set.getString(3));
             }else{
                 throw new NoSuchUserOrPassword();
             }

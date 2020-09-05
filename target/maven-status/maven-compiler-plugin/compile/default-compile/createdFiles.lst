@@ -1,5 +1,6 @@
 carlook\ui\views\StartseiteView.class
 carlook\ui\views\AutoSucheView.class
+carlook\objects\entities\Auto.class
 carlook\services\util\Roles.class
 carlook\objects\dao\UserSearchReservDAO.class
 carlook\control\exceptions\DatabaseException.class
@@ -8,6 +9,8 @@ carlook\services\util\Konstanten.class
 carlook\services\db\ZugangDB.class
 carlook\services\util\KundeBuilder.class
 carlook\ui\MyUI.class
-carlook\objects\dto\Auto.class
+carlook\objects\entities\Kunde.class
+carlook\objects\dto\Autodto.class
 carlook\control\controls\ReservationControl.class
+carlook\objects\dto\Kundedto.class
 carlook\control\exceptions\NoSuchUserOrPassword.class

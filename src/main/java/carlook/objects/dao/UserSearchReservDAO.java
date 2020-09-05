@@ -1,8 +1,8 @@
 package carlook.objects.dao;
 
 
-import carlook.objects.dto.Auto;
-import carlook.objects.dto.Kunde;
+import carlook.objects.dto.Autodto;
+import carlook.objects.dto.Kundedto;
 import carlook.services.util.HashFunktionsKlasse;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -53,7 +53,7 @@ public class UserSearchReservDAO extends AbstractDAO {
 
     }
 
-    public void registerKunde(Kunde kunde){
+    public void registerKunde(Kundedto kundedto){
 
         // erzeuge Kunden in Kunden Tabelle
 
@@ -61,8 +61,8 @@ public class UserSearchReservDAO extends AbstractDAO {
         PreparedStatement statement = this.getPreparedStatement(sql);
 
         try{
-            statement.setString(1, kunde.getVorname());
-            statement.setString(2, kunde.getNachname());
+            statement.setString(1, kundedto.getVorname());
+            statement.setString(2, kundedto.getNachname());
 
             statement.executeUpdate();
 
@@ -79,8 +79,8 @@ public class UserSearchReservDAO extends AbstractDAO {
         try(ResultSet set = statement2.executeQuery()){
 
             if(set.next()){
-                kunde.setId(set.getInt(1));
-                kunde.setKundeId(set.getInt(1));
+                kundedto.setId(set.getInt(1));
+                kundedto.setKundeId(set.getInt(1));
             }
 
         } catch(SQLException ex){
@@ -94,11 +94,11 @@ public class UserSearchReservDAO extends AbstractDAO {
         PreparedStatement statement3 = this.getPreparedStatement(sql3);
 
         try{
-            statement3.setInt(1, kunde.getId());
-            statement3.setString(2, kunde.getEmail());
-            statement3.setString(3, HashFunktionsKlasse.getHash(kunde.getPasswort().getBytes(), "MD5"));
-            statement3.setInt(4, kunde.getKundeId());
-            statement3.setString(5, kunde.getRole());
+            statement3.setInt(1, kundedto.getId());
+            statement3.setString(2, kundedto.getEmail());
+            statement3.setString(3, HashFunktionsKlasse.getHash(kundedto.getPasswort().getBytes(), "MD5"));
+            statement3.setInt(4, kundedto.getKundeId());
+            statement3.setString(5, kundedto.getRole());
 
             statement3.executeUpdate();
 
@@ -107,7 +107,7 @@ public class UserSearchReservDAO extends AbstractDAO {
         }
     }
 
-    public List<Auto> searchAutos(String marke, String modell) throws SQLException {
+    public List<Autodto> searchAutos(String marke, String modell) throws SQLException {
 
         marke = marke.toUpperCase();
         modell = modell.toUpperCase();
@@ -148,29 +148,29 @@ public class UserSearchReservDAO extends AbstractDAO {
             }
         }
 
-        List<Auto> retListAuto = new ArrayList<>();
+        List<Autodto> retListAutodto = new ArrayList<>();
 
         ResultSet rs = statement.executeQuery();
 
         while(rs.next()){
 
-            Auto auto = new Auto();
-            auto.setAuto_id(rs.getInt(1));
-            auto.setMarke(rs.getString(2));
-            auto.setBaujahr(rs.getString(3));
-            auto.setModell(rs.getString(4));
-            auto.setZustand(rs.getString(5));
-            auto.setBeschreibung(rs.getString(6));
-            auto.setPreis(rs.getInt(7));
-            retListAuto.add(auto);
+            Autodto autodto = new Autodto();
+            autodto.setAuto_id(rs.getInt(1));
+            autodto.setMarke(rs.getString(2));
+            autodto.setBaujahr(rs.getString(3));
+            autodto.setModell(rs.getString(4));
+            autodto.setZustand(rs.getString(5));
+            autodto.setBeschreibung(rs.getString(6));
+            autodto.setPreis(rs.getInt(7));
+            retListAutodto.add(autodto);
 
         }
 
 
-        return retListAuto;
+        return retListAutodto;
     }
 
-    public List<Auto> searchAutos(Integer autoID, List<Auto> retListAuto) throws SQLException {
+    public List<Autodto> searchAutos(Integer autoID, List<Autodto> retListAutodto) throws SQLException {
 
         String sql;
         PreparedStatement statement;
@@ -183,20 +183,20 @@ public class UserSearchReservDAO extends AbstractDAO {
 
         while(rs.next()){
 
-            Auto auto = new Auto();
-            auto.setAuto_id(rs.getInt(1));
-            auto.setMarke(rs.getString(2));
-            auto.setBaujahr(rs.getString(3));
-            auto.setModell(rs.getString(4));
-            auto.setZustand(rs.getString(5));
-            auto.setBeschreibung(rs.getString(6));
-            auto.setPreis(rs.getInt(7));
-            retListAuto.add(auto);
+            Autodto autodto = new Autodto();
+            autodto.setAuto_id(rs.getInt(1));
+            autodto.setMarke(rs.getString(2));
+            autodto.setBaujahr(rs.getString(3));
+            autodto.setModell(rs.getString(4));
+            autodto.setZustand(rs.getString(5));
+            autodto.setBeschreibung(rs.getString(6));
+            autodto.setPreis(rs.getInt(7));
+            retListAutodto.add(autodto);
 
         }
 
 
-        return retListAuto;
+        return retListAutodto;
 
     }
 
