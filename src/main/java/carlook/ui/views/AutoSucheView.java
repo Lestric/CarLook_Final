@@ -131,8 +131,10 @@ public class AutoSucheView extends VerticalLayout implements View {
 
                 } ));
 
-        this.addComponents(new Label("&nbsp" , ContentMode.HTML), autoGrid, new Label("&nbsp" , ContentMode.HTML));
+        this.addComponents( autoGrid, new Label("&nbsp" , ContentMode.HTML));
+        this.setComponentAlignment(autoGrid,Alignment.TOP_LEFT);
         autoGrid.setWidth("80%");
+
 
     }
 
