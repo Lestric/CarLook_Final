@@ -64,6 +64,7 @@ public class LandingPage extends VerticalLayout implements View {
         });
 
         Button btAutoView = new Button("Autos suchen", FontAwesome.CAR);
+        btAutoView.setId("btnAutosuche");
         btAutoView.setDescription("Hier können Sie Autos suchen.");
         btAutoView.addClickListener(e ->{
             UI.getCurrent().getNavigator().navigateTo( Konstanten.AUTOSUCHE );
