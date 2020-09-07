@@ -3,10 +3,13 @@ package carlook.ui.views;
 import carlook.control.controls.ReservationControl;
 import carlook.objects.dao.UserSearchReservDAO;
 import carlook.objects.dto.Autodto;
+import carlook.objects.entities.Kunde;
+import carlook.services.util.Konstanten;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 import com.vaadin.ui.renderers.ButtonRenderer;
@@ -25,7 +28,14 @@ public class AutoSucheView extends VerticalLayout implements View {
 
     public void enter(ViewChangeListener.ViewChangeEvent event) {
 
-        this.setUp();
+        Kunde user =  (Kunde) VaadinSession.getCurrent().getAttribute("currentUser");
+
+        //Wenn user schon eingeloggt, kommt er direkt auf Main statt auf Login
+        if(user == null){
+            UI.getCurrent().getNavigator().navigateTo(Konstanten.START);
+        }else {
+            this.setUp();
+        }
     }
 
     public void setUp() {
